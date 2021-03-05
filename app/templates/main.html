@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+	{% if title %}
+		<title>{{ title }}</title>
+	{% else %}
+		<title>Instagram</title>
+	{% endif %}
+{% endblock title %}
+
+{% block main %}
+
+	<div class="main_part">
+
+		<div class="phones">
+			<div class="images slider">
+				<div class="image" style="background-image: url({{ url_for('static', filename='inst.jpg') }}); opacity: 1;"></div>
+				<div class="image" style="background-image: url({{ url_for('static', filename='inst2.jpg') }});"></div>
+				<div class="image" style="background-image: url({{ url_for('static', filename='inst3.jpg') }});"></div>
+				<div class="image" style="background-image: url({{ url_for('static', filename='inst4.jpg') }});"></div>
+				<div class="image" style="background-image: url({{ url_for('static', filename='inst5.jpg') }});"></div>
+			</div>
+		</div>
+
+		<div class="column">
+			<div class="form">
+				<h1 class="title"></h1>
+
+				<form action="" method="post">
+					{{ form.csrf_token }}
+
+					{{ form.login(size=32, id="login", placeholder="Номер телефона, имя пользователя или эл. адрес") }}
+					{{ form.password(size=32, id="password", placeholder="Пароль") }}
+					{{ form.submit(class="submit", id="submit") }}
+				</form>
+
+				<div class="division">
+					<div class="line"></div>
+					<div class="or">или</div>
+					<div class="line"></div>
+				</div>
+
+				<div class="facebook">
+					<a href=""><img src="{{ url_for('static', filename='facebook.png') }}" alt=""></a>
+					<a href="">Войти через Facebook</a>
+				</div>
+
+				<div class="forgot">
+					<a href="">Забыли пароль?</a>
+				</div>
+			</div>
+
+			<div class="reg form">
+				<p class="text">У вас ещё нет аккаутна? <a href="">Зарегистрироваться</a></p>
+			</div>
+
+			<div class="download">
+				<p class="text">Установите приложение.</p>
+				<div class="loadbuttons">
+					<a href=""><img src="{{ url_for('static', filename='appstore.png') }}" alt=""></a>
+					<div class="space"></div>
+					<a href=""><img src="{{ url_for('static', filename='googleplay.png') }}" alt=""></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock main %}
+
+{% block script %}
+	<script>
+        const images = [...document.querySelectorAll('.image')];
+        let curIndex = 0;
+
+        function changeVisibleImage() {
+        	images[curIndex].style.opacity = 0;
+
+        	curIndex++;
+        	curIndex %= images.length;
+
+        	images[curIndex].style.opacity = 1;
+        }
+
+        setInterval(() => changeVisibleImage(), 6000);
+    </script>
+
+    <script>
+    	let login = document.querySelector('#login');
+    	let password = document.querySelector('#password');
+    	let submit = document.querySelector('#submit');
+
+    	function changeColor() {
+    		if (login.value !== "" && password.value !== "") {
+    			submit.style.backgroundColor = "#0095f6";
+    		}
+    		else {
+    			submit.style.backgroundColor = "#0095f644";
+    		}
+    	}
+
+    	login.addEventListener('input', changeColor);
+    	password.addEventListener('input', changeColor);
+    </script>
+{% endblock script %}

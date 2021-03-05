@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+	<link href="https://fonts.googleapis.com/css2?family=Lobster&family=Roboto:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+	{% block title %}{% endblock %}
+
+<body>
+	<main>
+		{% block main %}{% endblock %}
+	</main>
+
+	<footer>
+		<div class="info">
+			<nav>
+				<ul class="nav">
+					<li class="nav_item"><a href="">Информация</a></li>
+					<li class="nav_item"><a href="">Блог</a></li>
+					<li class="nav_item"><a href="">Вакансии</a></li>
+					<li class="nav_item"><a href="">Помощь</a></li>
+					<li class="nav_item"><a href="">API</a></li>
+					<li class="nav_item"><a href="">Конфиденциальность</a></li>
+					<li class="nav_item"><a href="">Условия</a></li>
+					<li class="nav_item"><a href="">Популярные аккаунты</a></li>
+					<li class="nav_item"><a href="">Хэштеги</a></li>
+					<li class="nav_item"><a href="">Места</a></li>
+				</ul>
+			</nav>
+			<div class="logo">
+				<span>Русский</span>
+				<span>&copy; Instagram, 2021</span>
+			</div>
+		</div>
+	</footer>
+
+	{% block script %}{% endblock %}
+
+</body>
+</html>
